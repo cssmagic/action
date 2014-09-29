@@ -1,0 +1,16 @@
+/** based on `mocha.css` **/
+body > header {
+	padding: 15px 300px 0 30px;
+	font: 200 14px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+body > header h1 {
+	margin: 0;
+	font-size: 28px;
+	font-weight: 400;
+}
+body > header p {
+	margin: 0;
+}
+body > header a {
+	color: #4183C4;
+}
