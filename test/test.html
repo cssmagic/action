@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>UT (Dev) - Action.js</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="../bower_components/mocha/mocha.css">
+<link rel="stylesheet" href="mocha-page-css.css">
+</head>
+<body>
+<header>
+	<h1>UT (Dev) - Action.js</h1>
+	<p><a href="https://github.com/cssmagic/action.js">View on GitHub</a></p>
+</header>
+<div id="mocha"></div>
+<!-- deps -->
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<!-- testing framework -->
+<script src="../bower_components/mocha/mocha.js"></script>
+<script src="../bower_components/chai/chai.js"></script>
+<script>
+mocha.setup('bdd')
+mocha.checkLeaks()
+var expect = chai.expect
+</script>
+<!-- source code -->
+<script src="../src/action.js"></script>
+<!-- test-case -->
+<script src="test.js"></script>
+<!-- init -->
+<script>mocha.run()</script>
+</body>
+</html>
