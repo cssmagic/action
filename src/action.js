@@ -1,8 +1,5 @@
 
-////////////////////  action  ////////////////////
-//an easy and lazy solution for click-event-binding
-
-void function (window, _ext) {
+var action = function () {
 	'use strict'
 
 	//namespace
@@ -60,5 +57,6 @@ void function (window, _ext) {
 	action.__actionList = _actionList
 
 	//exports
-	_ext.exports('action', action)
-}(window, _ext)
+	return action
+
+}()
