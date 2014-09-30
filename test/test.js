@@ -10,20 +10,18 @@ describe('Action', function () {
 
 	function buildActionElem(action, href) {
 		var html = [
-			'<a href="#',
-			href ? href : '',
+			'<a href="',
+			href ? href : '#',
 			'" data-action',
-			action ? '=' + action : '',
+			action ? '="' + action + '"' : '',
 			'>Action Element</a>'
 		].join('')
+		//console.log(html)
 		return $(html)
 			.css({position: 'absolute', top: '-50px'})
 			.appendTo('body')
 	}
 
-	beforeEach(function () {
-//		console.log('beforeEach')
-	})
 	afterEach(function () {
 //		console.log('afterEach')
 		testKey = ''
@@ -33,21 +31,30 @@ describe('Action', function () {
 
 	describe('Util', function () {
 		describe('_getActionName()', function () {
+			var $link
+			afterEach(function () {
+				$link.remove()
+			})
 			it('get action name from `href`', function () {
 				var href = Math.random().toString(36).slice(2)
-				var $link = buildActionElem('', href)
+				$link = buildActionElem('', '#' + href)
 				expect(_getActionName($link)).to.equal(href)
 			})
 			it('get action name from `data-action`', function () {
 				var action = Math.random().toString(36).slice(2)
-				var $link = buildActionElem(action)
+				$link = buildActionElem(action)
 				expect(_getActionName($link)).to.equal(action)
 			})
 			it('get from `data-action` first', function () {
 				var action = Math.random().toString(36).slice(2)
 				var href = Math.random().toString(36).slice(2)
-				var $link = buildActionElem(action, href)
+				$link = buildActionElem(action, '#' + href)
 				expect(_getActionName($link)).to.equal(action)
+			})
+			it('return empty if `href` is not hash', function () {
+				var href = Math.random().toString(36).slice(2)
+				$link = buildActionElem('', href)
+				expect(_getActionName($link)).to.equal('')
 			})
 		})
 		describe('_formatActionName()', function () {
@@ -167,15 +174,12 @@ describe('Action', function () {
 	})
 
 	describe('DOM binding', function () {
-		var $wrapper, $link, context
-		before(function () {
-
-		})
+		var $link, context
 		after(function () {
-			$wrapper.remove()
+			$link.remove()
 		})
 		it('get action name from `href`', function (done) {
-			$link.attr('href', '#foo')
+			$link = buildActionElem('', '#foo')
 			_actionList.foo = function () {
 				testKey = 'test-foo'
 			}
@@ -186,7 +190,7 @@ describe('Action', function () {
 			}, 50)
 		})
 		it('get action name from `href` - context points to the link', function (done) {
-			$link.attr('href', '#foo')
+			$link = buildActionElem('', '#foo')
 			_actionList.foo = function () {
 				context = this
 			}
@@ -197,20 +201,18 @@ describe('Action', function () {
 			}, 50)
 		})
 		it('get action name from `data-action`', function (done) {
-			$link.attr('data-action', 'bar')
-			console.log($wrapper.html())
+			$link = buildActionElem('bar')
 			_actionList.bar = function () {
 				testKey = 'test-bar'
 			}
 			$link.click()
-			console.log('click')
 			setTimeout(function () {
 				expect(testKey).to.equal('test-bar')
 				done()
 			}, 50)
 		})
 		it('get action name from `data-action` - context points to the link', function (done) {
-			$link.attr('data-action', 'bar')
+			$link = buildActionElem('bar')
 			_actionList.bar = function () {
 				context = this
 			}
@@ -221,7 +223,7 @@ describe('Action', function () {
 			}, 50)
 		})
 		it('accept `data-action` value as a hash', function (done) {
-			$link.attr('data-action', '#bar')
+			$link = buildActionElem('#bar')
 			_actionList.bar = function () {
 				testKey = 'test-bar'
 			}

@@ -17,22 +17,24 @@ var action = function () {
 			//notice: default click behavior will be prevented.
 			ev.preventDefault()
 
-			var elem = this
-			var $elem = $(elem)
-
+			var $elem = $(this)
 			var actionName = _getActionName($elem)
 			if (actionName && actionName !== 'none') {
-				_handle(actionName, elem)
+				_handle(actionName, this)
 			} else {
 				/** DEBUG_INFO_START **/
-				console.warn('Empty action. Do nothing.')
+				console.warn('[Action.js] Empty action. Do nothing.')
 				/** DEBUG_INFO_END **/
 			}
 		})
 	}
 
 	function _getActionName($elem) {
-		var result = $elem.data('action') || $elem.attr('href') || ''
+		var result = $elem.data('action') || ''
+		if (!result) {
+			var href = $.trim($elem.attr('href'))
+			if (href && href.indexOf('#') === 0) result = href
+		}
 		return _formatActionName(result)
 	}
 	function _formatActionName(s) {
@@ -43,13 +45,13 @@ var action = function () {
 		var fn = _actionList[actionName]
 		if ($.isFunction(fn)) {
 			/** DEBUG_INFO_START **/
-			console.log('Executing action: ' + actionName)
+			console.log('[Action.js] Executing action: ' + actionName)
 			/** DEBUG_INFO_END **/
 
 			fn.call(context || window)
 		} else {
 			/** DEBUG_INFO_START **/
-			console.error('Not found callback of action: ' + actionName)
+			console.error('[Action.js] Not found callback of action: ' + actionName)
 			/** DEBUG_INFO_END **/
 		}
 	}
@@ -63,25 +65,25 @@ var action = function () {
 					if (actionName) {
 						/** DEBUG_INFO_START **/
 						if (_actionList[actionName]) {
-							console.warn('The existed action `' + actionName + '` has been overridden.')
+							console.warn('[Action.js] The existed action `' + actionName + '` has been overridden.')
 						}
 						/** DEBUG_INFO_END **/
 
 						_actionList[actionName] = value
 					} else {
 						/** DEBUG_INFO_START **/
-						console.error('The action name `' + key + '` is invalid.')
+						console.error('[Action.js] The action name `' + key + '` is invalid.')
 						/** DEBUG_INFO_END **/
 					}
 				} else {
 					/** DEBUG_INFO_START **/
-					console.error('The callback for action `' + actionName + '` is not a valid function.')
+					console.error('[Action.js] The callback for action `' + actionName + '` is not a valid function.')
 					/** DEBUG_INFO_END **/
 				}
 			})
 		} else {
 			/** DEBUG_INFO_START **/
-			console.error('Param must be a plain object.')
+			console.warn('[Action.js] Param must be a plain object.')
 			/** DEBUG_INFO_END **/
 		}
 	}
