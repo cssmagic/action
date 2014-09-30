@@ -1,4 +1,4 @@
-describe('Action', function () {
+void function () {
 	var _actionList = action.__actionList
 	var _getActionName = action.__getActionName
 	var _formatActionName = action.__formatActionName
@@ -16,14 +16,12 @@ describe('Action', function () {
 			action ? '="' + action + '"' : '',
 			'>Action Element</a>'
 		].join('')
-		//console.log(html)
 		return $(html)
 			.css({position: 'absolute', top: '-50px'})
 			.appendTo('body')
 	}
 
 	afterEach(function () {
-//		console.log('afterEach')
 		testKey = ''
 		delete _actionList.foo
 		delete _actionList.bar
@@ -235,4 +233,4 @@ describe('Action', function () {
 		})
 	})
 
-})
+}()
