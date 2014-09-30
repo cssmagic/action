@@ -29,6 +29,7 @@
     "jquery": "1.*"
   },
   "devDependencies": {
+    "zepto": "*",
     "mocha": "*",
     "chai": "*"
   }
