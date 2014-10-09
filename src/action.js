@@ -1,6 +1,7 @@
 /**
  * Action.js - Easy and lazy solution for click-event-binding.
- * (https://github.com/cssmagic/action.js)
+ * Released under the MIT license.
+ * https://github.com/cssmagic/action.js
  */
 var action = function () {
 	'use strict'
@@ -10,6 +11,20 @@ var action = function () {
 
 	var SELECTOR = '[data-action]'
 	var _actionList = {}
+
+	//util
+	function _getActionName($elem) {
+		var result = $elem.data('action') || ''
+		if (!result) {
+			var href = $.trim($elem.attr('href'))
+			if (href && href.indexOf('#') === 0) result = href
+		}
+		return _formatActionName(result)
+	}
+	function _formatActionName(s) {
+		var result = s ? $.trim(String(s)).replace(/^[#!]+/, '') : ''
+		return $.trim(result)
+	}
 
 	function _init() {
 		var $wrapper = $(document.body || document.documentElement)
@@ -27,19 +42,6 @@ var action = function () {
 				/** DEBUG_INFO_END **/
 			}
 		})
-	}
-
-	function _getActionName($elem) {
-		var result = $elem.data('action') || ''
-		if (!result) {
-			var href = $.trim($elem.attr('href'))
-			if (href && href.indexOf('#') === 0) result = href
-		}
-		return _formatActionName(result)
-	}
-	function _formatActionName(s) {
-		var result = s ? $.trim(s + '').replace(/^[#!]+/, '') : ''
-		return $.trim(result)
 	}
 	function _handle(actionName, context) {
 		var fn = _actionList[actionName]
