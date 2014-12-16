@@ -1,4 +1,4 @@
-# Action.js
+# Action
 
 Easy and lazy solution for click-event-binding.
 
