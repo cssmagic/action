@@ -1,7 +1,7 @@
 /**
- * Action.js - Easy and lazy solution for click-event-binding.
+ * Action - Easy and lazy solution for click-event-binding.
  * Released under the MIT license.
- * https://github.com/cssmagic/action.js
+ * https://github.com/cssmagic/action
  */
 var action = function () {
 	'use strict'
@@ -38,7 +38,7 @@ var action = function () {
 				_handle(actionName, this)
 			} else {
 				/** DEBUG_INFO_START **/
-				console.warn('[Action.js] Empty action. Do nothing.')
+				console.warn('[Action] Empty action. Do nothing.')
 				/** DEBUG_INFO_END **/
 			}
 		})
@@ -47,13 +47,13 @@ var action = function () {
 		var fn = _actionList[actionName]
 		if ($.isFunction(fn)) {
 			/** DEBUG_INFO_START **/
-			console.log('[Action.js] Executing action: ' + actionName)
+			console.log('[Action] Executing action: ' + actionName)
 			/** DEBUG_INFO_END **/
 
 			fn.call(context || window)
 		} else {
 			/** DEBUG_INFO_START **/
-			console.error('[Action.js] Not found callback of action: ' + actionName)
+			console.error('[Action] Not found callback of action: ' + actionName)
 			/** DEBUG_INFO_END **/
 		}
 	}
@@ -67,25 +67,25 @@ var action = function () {
 					if (actionName) {
 						/** DEBUG_INFO_START **/
 						if (_actionList[actionName]) {
-							console.warn('[Action.js] The existed action `' + actionName + '` has been overridden.')
+							console.warn('[Action] The existed action `' + actionName + '` has been overridden.')
 						}
 						/** DEBUG_INFO_END **/
 
 						_actionList[actionName] = value
 					} else {
 						/** DEBUG_INFO_START **/
-						console.error('[Action.js] The action name `' + key + '` is invalid.')
+						console.error('[Action] The action name `' + key + '` is invalid.')
 						/** DEBUG_INFO_END **/
 					}
 				} else {
 					/** DEBUG_INFO_START **/
-					console.error('[Action.js] The callback for action `' + actionName + '` is not a valid function.')
+					console.error('[Action] The callback for action `' + actionName + '` is not a valid function.')
 					/** DEBUG_INFO_END **/
 				}
 			})
 		} else {
 			/** DEBUG_INFO_START **/
-			console.warn('[Action.js] Param must be a plain object.')
+			console.warn('[Action] Param must be a plain object.')
 			/** DEBUG_INFO_END **/
 		}
 	}
