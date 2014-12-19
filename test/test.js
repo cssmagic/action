@@ -33,35 +33,35 @@ void function () {
 			afterEach(function () {
 				$link.remove()
 			})
-			it('get action name from `href`', function () {
+			it('gets action name from `href`', function () {
 				var href = Math.random().toString(36).slice(2)
 				$link = buildActionElem('', '#' + href)
 				expect(_getActionName($link)).to.equal(href)
 			})
-			it('get action name from `data-action`', function () {
+			it('gets action name from `data-action`', function () {
 				var action = Math.random().toString(36).slice(2)
 				$link = buildActionElem(action)
 				expect(_getActionName($link)).to.equal(action)
 			})
-			it('get from `data-action` first', function () {
+			it('gets from `data-action` first', function () {
 				var action = Math.random().toString(36).slice(2)
 				var href = Math.random().toString(36).slice(2)
 				$link = buildActionElem(action, '#' + href)
 				expect(_getActionName($link)).to.equal(action)
 			})
-			it('return empty if `href` is not hash', function () {
+			it('returns empty if `href` is not hash', function () {
 				var href = Math.random().toString(36).slice(2)
 				$link = buildActionElem('', href)
 				expect(_getActionName($link)).to.equal('')
 			})
 		})
 		describe('_formatActionName()', function () {
-			it('return directly if initial character is not space, `#` or `!`', function () {
+			it('returns directly if initial character is not space, `#` or `!`', function () {
 				var arg
 				arg = 'foobar'
 				expect(_formatActionName(arg)).to.equal(arg)
 			})
-			it('remove all initial `#` and `!` characters', function () {
+			it('removes all initial `#` and `!` characters', function () {
 				var arg
 				arg = '#foo'
 				expect(_formatActionName(arg)).to.equal('foo')
@@ -80,7 +80,7 @@ void function () {
 				arg = '#!!foo!bar'
 				expect(_formatActionName(arg)).to.equal('foo!bar')
 			})
-			it('ignore initial and ending spaces', function () {
+			it('ignores initial and ending spaces', function () {
 				var arg
 				arg = '    '
 				expect(_formatActionName(arg)).to.equal('')
@@ -92,8 +92,10 @@ void function () {
 				expect(_formatActionName(arg)).to.equal('bar')
 				arg = '  #!foobar  '
 				expect(_formatActionName(arg)).to.equal('foobar')
+				arg = '  #! ##!!foobar  '
+				expect(_formatActionName(arg)).to.equal('foobar')
 			})
-			it('convert falsy value to empty string', function () {
+			it('converts falsy value to empty string', function () {
 				var arg
 				arg = undefined
 				expect(_formatActionName(arg)).to.equal('')
@@ -109,7 +111,7 @@ void function () {
 
 	describe('APIs', function () {
 		describe('action.add()', function () {
-			it('do basic functionality', function () {
+			it('does basic functionality', function () {
 				expect(_actionList).to.deep.equal({})
 				actionSet = {
 					foo: fnFoo,
@@ -118,7 +120,7 @@ void function () {
 				action.add(actionSet)
 				expect(_actionList).to.deep.equal(actionSet)
 			})
-			it('format keys of the input object', function () {
+			it('formats keys of the input object', function () {
 				expect(_actionList).to.deep.equal({})
 				actionSet = {
 					foo: fnFoo,
@@ -127,7 +129,7 @@ void function () {
 				action.add(actionSet)
 				expect(_actionList).to.deep.equal(actionSet)
 			})
-			it('do nothing if param is not a plain object', function () {
+			it('does nothing if param is not a plain object', function () {
 				expect(_actionList).to.deep.equal({})
 				action.add('foo')
 				expect(_actionList).to.deep.equal({})
@@ -139,7 +141,7 @@ void function () {
 		})
 
 		describe('action.trigger()', function () {
-			it('do basic functionality', function () {
+			it('does basic functionality', function () {
 				actionSet = {
 					foo: function () {
 						testKey = 'test-foo'
@@ -154,7 +156,7 @@ void function () {
 				action.trigger('bar')
 				expect(testKey).to.equal('test-bar')
 			})
-			it('call callback on the specified context', function () {
+			it('calls action function on the specified context', function () {
 				var context = {}
 				actionSet = {
 					foo: function () {
@@ -176,7 +178,7 @@ void function () {
 		after(function () {
 			$link.remove()
 		})
-		it('get action name from `href`', function (done) {
+		it('gets action name from `href`', function (done) {
 			$link = buildActionElem('', '#foo')
 			_actionList.foo = function () {
 				testKey = 'test-foo'
@@ -187,7 +189,7 @@ void function () {
 				done()
 			}, 50)
 		})
-		it('get action name from `href` - context points to the link', function (done) {
+		it('gets action name from `href` - context points to the link', function (done) {
 			$link = buildActionElem('', '#foo')
 			_actionList.foo = function () {
 				context = this
@@ -198,7 +200,7 @@ void function () {
 				done()
 			}, 50)
 		})
-		it('get action name from `data-action`', function (done) {
+		it('gets action name from `data-action`', function (done) {
 			$link = buildActionElem('bar')
 			_actionList.bar = function () {
 				testKey = 'test-bar'
@@ -209,7 +211,7 @@ void function () {
 				done()
 			}, 50)
 		})
-		it('get action name from `data-action` - context points to the link', function (done) {
+		it('gets action name from `data-action` - context points to the link', function (done) {
 			$link = buildActionElem('bar')
 			_actionList.bar = function () {
 				context = this
@@ -220,7 +222,7 @@ void function () {
 				done()
 			}, 50)
 		})
-		it('accept `data-action` value as a hash', function (done) {
+		it('accepts `data-action` value as a hash', function (done) {
 			$link = buildActionElem('#bar')
 			_actionList.bar = function () {
 				testKey = 'test-bar'

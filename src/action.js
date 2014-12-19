@@ -22,7 +22,7 @@ var action = function () {
 		return _formatActionName(result)
 	}
 	function _formatActionName(s) {
-		var result = s ? $.trim(String(s)).replace(/^[#!]+/, '') : ''
+		var result = s ? String(s).replace(/^[#!\s]+/, '') : ''
 		return $.trim(result)
 	}
 
@@ -34,26 +34,27 @@ var action = function () {
 
 			var $elem = $(this)
 			var actionName = _getActionName($elem)
-			if (actionName && actionName !== 'none') {
-				_handle(actionName, this)
-			} else {
-				/** DEBUG_INFO_START **/
-				console.warn('[Action] Empty action. Do nothing.')
-				/** DEBUG_INFO_END **/
-			}
+			_handle(actionName, this)
 		})
 	}
 	function _handle(actionName, context) {
-		var fn = _actionList[actionName]
-		if ($.isFunction(fn)) {
+		if (!actionName) {
 			/** DEBUG_INFO_START **/
-			console.log('[Action] Executing action: ' + actionName)
+			console.warn('[Action] Empty action. Do nothing.')
+			/** DEBUG_INFO_END **/
+
+			return
+		}
+		var fn = _actionList[actionName]
+		if (fn && $.isFunction(fn)) {
+			/** DEBUG_INFO_START **/
+			console.log('[Action] Executing action `%s`.', actionName)
 			/** DEBUG_INFO_END **/
 
 			fn.call(context || window)
 		} else {
 			/** DEBUG_INFO_START **/
-			console.error('[Action] Not found callback of action: ' + actionName)
+			console.error('[Action] Not found action `%s`.', actionName)
 			/** DEBUG_INFO_END **/
 		}
 	}
@@ -63,23 +64,23 @@ var action = function () {
 		if ($.isPlainObject(actionSet)) {
 			$.each(actionSet, function (key, value) {
 				var actionName = _formatActionName(key)
-				if ($.isFunction(value)) {
-					if (actionName) {
+				if (actionName) {
+					if ($.isFunction(value)) {
 						/** DEBUG_INFO_START **/
 						if (_actionList[actionName]) {
-							console.warn('[Action] The existed action `' + actionName + '` has been overridden.')
+							console.warn('[Action] The existed action `%s` has been overridden.', actionName)
 						}
 						/** DEBUG_INFO_END **/
 
 						_actionList[actionName] = value
 					} else {
 						/** DEBUG_INFO_START **/
-						console.error('[Action] The action name `' + key + '` is invalid.')
+						console.error('[Action] The function for action `%s` is invalid.', actionName)
 						/** DEBUG_INFO_END **/
 					}
 				} else {
 					/** DEBUG_INFO_START **/
-					console.error('[Action] The callback for action `' + actionName + '` is not a valid function.')
+					console.error('[Action] The action name `%s` is invalid.', key)
 					/** DEBUG_INFO_END **/
 				}
 			})
