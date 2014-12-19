@@ -170,6 +170,20 @@ void function () {
 				action.trigger('foo', context)
 				action.trigger('bar', mocha)
 			})
+			it('returns return value of action function', function () {
+				testKey = Math.random().toString(36).slice(2)
+				actionSet = {
+					foo: function () {
+						return testKey
+					},
+					bar: function () {
+						return mocha
+					}
+				}
+				action.add(actionSet)
+				expect(action.trigger('foo')).to.equal(testKey)
+				expect(action.trigger('bar')).to.equal(mocha)
+			})
 		})
 	})
 

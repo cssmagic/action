@@ -51,7 +51,7 @@ var action = function () {
 			console.log('[Action] Executing action `%s`.', actionName)
 			/** DEBUG_INFO_END **/
 
-			fn.call(context || window)
+			return fn.call(context || window)
 		} else {
 			/** DEBUG_INFO_START **/
 			console.error('[Action] Not found action `%s`.', actionName)
@@ -91,7 +91,7 @@ var action = function () {
 		}
 	}
 	action.trigger = function (actionName, context) {
-		_handle(_formatActionName(actionName), context)
+		return _handle(_formatActionName(actionName), context)
 	}
 
 	//init
