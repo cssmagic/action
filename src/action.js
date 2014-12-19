@@ -22,8 +22,7 @@ var action = function () {
 		return _formatActionName(result)
 	}
 	function _formatActionName(s) {
-		var result = s ? String(s).replace(/^[#!\s]+/, '') : ''
-		return $.trim(result)
+		return s ? $.trim(String(s).replace(/^[#!\s]+/, '')) : ''
 	}
 
 	function _init() {
