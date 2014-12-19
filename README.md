@@ -45,6 +45,17 @@ action.add({
 
 点击这些元素就可以触发你定义的那个动作了！
 
+## 兼容性
+
+依赖以下类库：
+
+* jQuery（或兼容类库，比如 Zepto）
+
+支持以下浏览器：
+
+* IE 6+（需要 jQuery 1.x）
+* Chrome/Firefox/Safari 等现代浏览器
+
 ## 安装
 
 ```bash
