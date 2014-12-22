@@ -2,7 +2,7 @@
 
 # Action
 
-轻松随意绑定点击事件！
+> 轻松随意绑定点击事件！
 
 ## 用法简介
 
@@ -24,7 +24,7 @@ action.add({
 在页面里创建一些元素，比如这样：
 
 ```html
-<a href="#my-action" data-action>link</a>
+<button data-action="my-action">btn</button>
 ```
 
 或这样：
@@ -36,7 +36,7 @@ action.add({
 或这样：
 
 ```html
-<button data-action="my-action">btn</button>
+<a href="#my-action" data-action>link</a>
 ```
 
 #### 第三步
@@ -73,6 +73,14 @@ $ bower install action
 * JavaScript API
 	* `action.add()`
 	* `action.trigger()`
+
+## 谁在用？
+
+移动 UI 框架 [CMUI](https://github.com/CMUI/CMUI) 采用 Action 作为全局的基础设施，因此所有 CMUI 用户都在使用 Action：
+
+* [百姓网 - 手机版](http://m.baixing.com/)
+* [薇姿官方电子商城 - 手机版](http://m.vichy.com.cn/)
+* [优e网 - 手机版](http://m.uemall.com/)
 
 ***
 
