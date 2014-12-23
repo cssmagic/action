@@ -69,7 +69,7 @@ $ bower install action
 
 你需要了解以下 API，[详细文档参见 Wiki](https://github.com/cssmagic/action/issues/9)。
 
-* DOM API
+* HTML API
 * JavaScript API
 	* `action.add()`
 	* `action.trigger()`
