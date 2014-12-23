@@ -20,7 +20,7 @@ action.add({
 Create an element like this:
 
 ```html
-<a href="#my-action" data-action>link</a>
+<button data-action="my-action">btn</button>
 ```
 
 or 
@@ -32,7 +32,7 @@ or
 or
 
 ```html
-<button data-action="my-action">btn</button>
+<a href="#my-action" data-action>link</a>
 ```
 
 ### Step 3

@@ -20,7 +20,7 @@ action.add({
 在页面里创建一些元素，比如这样：
 
 ```html
-<a href="#my-action" data-action>link</a>
+<button data-action="my-action">btn</button>
 ```
 
 或这样：
@@ -32,7 +32,7 @@ action.add({
 或这样：
 
 ```html
-<button data-action="my-action">btn</button>
+<a href="#my-action" data-action>link</a>
 ```
 
 ### 第三步
