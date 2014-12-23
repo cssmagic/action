@@ -21,17 +21,11 @@ Create an element like this:
 
 ```html
 <button data-action="my-action">btn</button>
-```
 
-or 
-
-```html
+<!-- or -->
 <a href="#" data-action="my-action">link</a>
-```
 
-or
-
-```html
+<!-- or -->
 <a href="#my-action" data-action>link</a>
 ```
 
