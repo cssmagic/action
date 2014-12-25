@@ -1,6 +1,6 @@
 > English version is [here](https://github.com/cssmagic/action/wiki).
 
-# Action
+# Action [![spm package](http://spmjs.io/badge/action)](http://spmjs.io/package/action)
 
 > 轻松随意绑定点击事件！
 
@@ -63,6 +63,12 @@ $ bower install action
 
 0. 通过 Bower 安装。
 0. 在页面中加载 `src/action.js` 脚本文件。
+
+也可以通过 spm 进行安装：
+
+```bash
+$ spm install action
+```
 
 ## API 文档
 
