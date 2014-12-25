@@ -3,7 +3,20 @@
  * Released under the MIT license.
  * https://github.com/cssmagic/action
  */
-var action = function () {
+
+(function (factory) {
+	if (typeof define === "function" && define.amd) {
+		define(['jquery'], factory);
+	}
+	else if (typeof module != "undefined" && typeof module.exports != "undefined") {
+		var jquery = require('jquery');
+		module.exports = factory(jquery);
+	}
+	else {
+		window["action"] = factory();
+	}
+})(function ($) {
+
 	'use strict'
 
 	//namespace
@@ -106,4 +119,4 @@ var action = function () {
 	//exports
 	return action
 
-}()
+})
