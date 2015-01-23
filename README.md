@@ -1,6 +1,6 @@
 > English version is [here](https://github.com/cssmagic/action/wiki).
 
-# Action
+# Action [![spm package](http://spmjs.io/badge/action)](http://spmjs.io/package/action)
 
 > 轻松随意绑定点击事件！
 
