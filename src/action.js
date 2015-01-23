@@ -9,11 +9,10 @@
 		define(['jquery'], factory);
 	}
 	else if (typeof module != "undefined" && typeof module.exports != "undefined") {
-		var jquery = require('jquery');
-		module.exports = factory(jquery);
+		module.exports = factory(require('jquery'));
 	}
 	else {
-		window["action"] = factory();
+		window["action"] = factory($);
 	}
 })(function ($) {
 
