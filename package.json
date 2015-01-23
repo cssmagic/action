@@ -1,0 +1,33 @@
+{
+  "name": "action",
+  "version": "0.3.0",
+  "homepage": "https://github.com/cssmagic/action",
+  "authors": [
+    "cssmagic"
+  ],
+  "description": "Easy and lazy solution for click-event-binding.",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "click",
+    "event"
+  ],
+  "license": "MIT",
+  "spm": {
+    "main": "src/action.js",
+    "dependencies": {
+      "jquery": "*"
+    },
+    "ignore": [
+      "**/.*",
+      "**.sh",
+      "**.min.js",
+      "node_modules",
+      "bower_components",
+      "test",
+      "doc",
+      "demo"
+    ]
+  }
+}

@@ -85,6 +85,12 @@ action.add({
 $ spm install action
 ```
 
+也可以通过 spm 进行安装：
+
+```bash
+$ spm install action
+```
+
 ## API 文档
 
 Action 提供了简洁易用的 API，[详见此文档](https://github.com/cssmagic/action/issues/9)。
