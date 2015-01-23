@@ -47,31 +47,55 @@ action.add({
 
 支持以下浏览器：
 
+* Chrome / Firefox / Safari 等现代浏览器
 * IE 6+（需要 jQuery 1.x）
-* Chrome/Firefox/Safari 等现代浏览器
 
 ## 体积
 
 * 源码： 2.7k
-* 压缩后： 0.5k
+* 压缩后： 0.4k
 
 ## 安装
 
-```bash
-$ bower install action
-```
+#### Bower
 
-0. 通过 Bower 安装。
-0. 在页面中加载 `src/action.js` 脚本文件。
+0. 通过 Bower 安装：
+	```sh
+	$ bower install action
+	```
+
+0. 在页面中加载 Action 的脚本文件及必要的依赖：
+	```html
+	<!DOCTYPE html>
+	<html>
+	<head>...</head>
+	<body>
+		...
+		<script src="bower_components/jquery/dist/jquery.js">
+		<script src="bower_components/action/src/action.js">
+	</body>
+	</html>
+	```
+
+#### spm
+
+也可通过 spm 进行安装和构建：
+
+```sh
+$ spm install action
+```
 
 ## API 文档
 
-你需要了解以下 API，[详细文档参见 Wiki](https://github.com/cssmagic/action/issues/9)。
+Action 提供了简洁易用的 API，[详见此文档](https://github.com/cssmagic/action/issues/9)。
 
-* HTML API
-* JavaScript API
-	* `action.add()`
-	* `action.trigger()`
+此外，建议阅读 [Wiki](https://github.com/cssmagic/action/wiki) 来获取更多信息。
+
+## 单元测试
+
+0. 把本项目的代码 fork 并 clone 到本地。
+0. 在本项目的根目录运行 `bower install`，安装必要的依赖。
+0. 在浏览器中打开 `test/test.html` 即可运行单元测试。
 
 ## 谁在用？
 
