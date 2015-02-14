@@ -30,7 +30,7 @@
     "jquery": "*"
   },
   "devDependencies": {
-    "zepto": "*",
+    "zepto.js": "*",
     "mocha.css": "0.1.0",
     "mocha": "*",
     "chai": "*"
