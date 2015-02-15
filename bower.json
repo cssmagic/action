@@ -32,7 +32,7 @@
   "devDependencies": {
     "zepto.js": "*",
     "mocha.css": "0.1.0",
-    "mocha": "*",
-    "chai": "*"
+    "mocha": "1.*",
+    "chai": "1.*"
   }
 }
