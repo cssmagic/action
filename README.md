@@ -60,21 +60,16 @@ action.add({
 #### Bower
 
 0. 通过 Bower 安装：
+
 	```sh
 	$ bower install action
 	```
 
 0. 在页面中加载 Action 的脚本文件及必要的依赖：
+
 	```html
-	<!DOCTYPE html>
-	<html>
-	<head>...</head>
-	<body>
-		...
-		<script src="bower_components/jquery/dist/jquery.js">
-		<script src="bower_components/action/src/action.js">
-	</body>
-	</html>
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/action/src/action.js"></script>
 	```
 
 #### spm
