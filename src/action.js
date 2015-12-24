@@ -6,13 +6,13 @@
 var action = (function () {
 	'use strict'
 
-	//namespace
+	// namespace
 	var action = {}
 
 	var SELECTOR = '[data-action]'
 	var _actionList = {}
 
-	//util
+	// util
 	function _getActionName($elem) {
 		var result = $elem.data('action') || ''
 		if (!result) {
@@ -29,7 +29,7 @@ var action = (function () {
 	function _init() {
 		var $wrapper = $(document.body || document.documentElement)
 		$wrapper.on('click', SELECTOR, function (ev) {
-			//notice: default click behavior will be prevented.
+			// notice: default click behavior will be prevented.
 			ev.preventDefault()
 
 			var $elem = $(this)
@@ -60,8 +60,8 @@ var action = (function () {
 		}
 	}
 
-	//api
-	action.add = function (actionSet) {
+	// API
+	function add(actionSet) {
 		if (!$.isPlainObject(actionSet)) {
 			/** DEBUG_INFO_START **/
 			console.warn('[Action] Param must be a plain object.')
@@ -99,21 +99,23 @@ var action = (function () {
 		})
 	}
   
-	action.trigger = function (actionName, context) {
+	function trigger(actionName, context) {
 		return _handle(_formatActionName(actionName), context)
 	}
 
-	//init
+	// init
 	_init()
 
 	/** DEBUG_INFO_START **/
-	//exports for unit test
+	// exports for unit test
 	action.__actionList = _actionList
 	action.__getActionName = _getActionName
 	action.__formatActionName = _formatActionName
 	/** DEBUG_INFO_END **/
 
-	//exports
+	// exports
+	action.add = add
+	action.trigger = trigger
 	return action
 
-})()
+}())
