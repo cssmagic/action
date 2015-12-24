@@ -64,7 +64,7 @@ var action = (function () {
 	function add(actionSet) {
 		if (!$.isPlainObject(actionSet)) {
 			/** DEBUG_INFO_START **/
-			console.warn('[Action] Param must be a plain object.')
+			console.error('[Action] Param must be a plain object.')
 			/** DEBUG_INFO_END **/
 
 			return
