@@ -91,7 +91,7 @@ var action = (function () {
 
 			/** DEBUG_INFO_START **/
 			if (_actionList[actionName]) {
-				console.warn('[Action] The existed action `%s` has been overridden.', actionName)
+				console.warn('[Action] The existing action `%s` has been overwritten.', actionName)
 			}
 			/** DEBUG_INFO_END **/
 
