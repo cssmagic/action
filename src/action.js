@@ -37,7 +37,7 @@ var action = (function () {
 			_handle(actionName, this)
 		})
 	}
-  
+
 	function _handle(actionName, context) {
 		if (!actionName) {
 			/** DEBUG_INFO_START **/
@@ -62,43 +62,41 @@ var action = (function () {
 
 	//api
 	action.add = function (actionSet) {
-    if (!$.isPlainObject(actionSet)){
-      /** DEBUG_INFO_START **/
-      console.warn('[Action] Param must be a plain object.')
-      /** DEBUG_INFO_END **/
-      
-      return
-    }
-    
-    $.each(actionSet, function (key, value) {
-      var actionName = _formatActionName(key)
-      
-      if(!actionName) {
-        /** DEBUG_INFO_START **/
-        console.error('[Action] The action name `%s` is invalid.', key)
-        /** DEBUG_INFO_END **/
-        
-        return
-      }
-      
-      if(!$.isFunction(value)) {
-        /** DEBUG_INFO_START **/
-        console.error('[Action] The function for action `%s` is invalid.', actionName)
-        /** DEBUG_INFO_END **/
-        
-        return
-      }
-      
-      /** DEBUG_INFO_START **/
-      if (_actionList[actionName]) {
-        console.warn('[Action] The existed action `%s` has been overridden.', actionName)
-      }
-      /** DEBUG_INFO_END **/
+		if (!$.isPlainObject(actionSet)) {
+			/** DEBUG_INFO_START **/
+			console.warn('[Action] Param must be a plain object.')
+			/** DEBUG_INFO_END **/
 
-      _actionList[actionName] = value
-      
-    })
-    
+			return
+		}
+
+		$.each(actionSet, function (key, value) {
+			var actionName = _formatActionName(key)
+
+			if (!actionName) {
+				/** DEBUG_INFO_START **/
+				console.error('[Action] The action name `%s` is invalid.', key)
+				/** DEBUG_INFO_END **/
+
+				return
+			}
+
+			if (!$.isFunction(value)) {
+				/** DEBUG_INFO_START **/
+				console.error('[Action] The function for action `%s` is invalid.', actionName)
+				/** DEBUG_INFO_END **/
+
+				return
+			}
+
+			/** DEBUG_INFO_START **/
+			if (_actionList[actionName]) {
+				console.warn('[Action] The existed action `%s` has been overridden.', actionName)
+			}
+			/** DEBUG_INFO_END **/
+
+			_actionList[actionName] = value
+		})
 	}
   
 	action.trigger = function (actionName, context) {
