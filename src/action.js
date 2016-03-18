@@ -14,7 +14,7 @@ var action = (function () {
 
 	// util
 	function _getActionName($elem) {
-		var result = $elem.data('action') || ''
+		var result = $elem.attr('data-action') || ''
 		if (!result) {
 			var href = $.trim($elem.attr('href'))
 			if (href && href.indexOf('#') === 0) result = href
