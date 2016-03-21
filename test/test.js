@@ -247,68 +247,54 @@ void function () {
 				done()
 			}, 50)
 		})
-	})
 
-	describe('DOM binding test for data("action")=>attr("data-action")', function () {
-		//polyfill for IE8
-		if (!Date.now) {
-		  Date.now = function now() {
-		    return new Date().getTime();
-		  };
-		}
-		
-		var $wrapper, $link
-		var actionName, randomKey
+		it('add action and trigger it, repeat twice on one element',function(done){
+			if (!Date.now) {
+			  Date.now = function now() {
+			    return new Date().getTime()
+			  }
+			}
+			
+			var $wrapper, $link
+			var actionName1, randomKey1, testKey1
+			var actionName2, randomKey2, testKey2
 
-		before(function () {
 			$wrapper = $('<div id="test"><a href="#" data-action>test action</a></div>')
-				.css({position: 'absolute', top: '-50px'})
-				.appendTo('body')
+					.css({position: 'absolute', top: '-50px'})
+					.appendTo('body')
 			$link = $wrapper.find('a')
-		})
 
-		after(function () {
+			//first add action and trigger click
+			actionName1 = Date.now().toString(36)
+			randomKey1 = Math.random().toString(36)
+
+			$link.attr('href', '#' + actionName1)
+			actionSet[actionName1] = function () {
+				testKey1 = randomKey1
+			}
+			action.add(actionSet)
+			$link.click()
+			setTimeout(function () {
+				expect(testKey1).to.equal(randomKey1)
+			}, 50)
+
+			//add action and trigger click again
+			actionName2 = Date.now().toString(36)
+			randomKey2 = Math.random().toString(36)
+
+			$link.attr('href', '#')
+			$link.attr('data-action', actionName2)
+			actionSet[actionName2] = function () {
+				testKey2 = randomKey2
+			}
+			action.add(actionSet)
+			$link.click()
+			setTimeout(function () {
+				expect(testKey2).to.equal(randomKey2)
+				done()
+			}, 50)
+
 			$wrapper.remove()
 		})
-
-		beforeEach(function () {
-			actionName = Date.now().toString(36)
-			randomKey = Math.random().toString(36)
-		})
-
-		// first test is for getting $link into jquery cache block
-		it('gets action name from `href`', function (done) {
-			$link.attr('href', '#' + actionName)
-			actionSet[actionName] = function () {
-				testKey = randomKey
-			}
-			action.add(actionSet)
-			$link.click()
-			setTimeout(function () {
-				expect(testKey).to.equal(randomKey)
-				done()
-			}, 50)
-		})
-
-		// if use attr('data-action') to save actionName and data('action') to get value of actionName
-		// it will get emtpy string from jquery cache pool instead of the right value
-		// because attr api won't trigger the refresh of cache pool
-		// but use data api will first check the cache pool, so the value will be missing.
-		// This test will check this problem
-		it('gets action name from `data-action`', function (done) {
-			$link.attr('href', '#')
-			$link.attr('data-action', actionName)
-			actionSet[actionName] = function () {
-				testKey = randomKey
-			}
-			action.add(actionSet)
-			$link.click()
-			setTimeout(function () {
-				expect(testKey).to.equal(randomKey)
-				done()
-			}, 50)
-		})
 	})
-	
-
 }()
