@@ -248,27 +248,22 @@ void function () {
 			}, 50)
 		})
 
-		it('add action and trigger it, repeat twice on one element',function(done){
+		it('works even if action name modified',function(done){
 			if (!Date.now) {
 			  Date.now = function now() {
 			    return new Date().getTime()
 			  }
 			}
 			
-			var $wrapper, $link
+			var $link
 			var actionName1, randomKey1, testKey1
 			var actionName2, randomKey2, testKey2
-
-			$wrapper = $('<div id="test"><a href="#" data-action>test action</a></div>')
-					.css({position: 'absolute', top: '-50px'})
-					.appendTo('body')
-			$link = $wrapper.find('a')
 
 			//first add action and trigger click
 			actionName1 = Date.now().toString(36)
 			randomKey1 = Math.random().toString(36)
 
-			$link.attr('href', '#' + actionName1)
+			$link = buildActionElem('', '#' + actionName1)
 			actionSet[actionName1] = function () {
 				testKey1 = randomKey1
 			}
@@ -282,8 +277,7 @@ void function () {
 			actionName2 = Date.now().toString(36)
 			randomKey2 = Math.random().toString(36)
 
-			$link.attr('href', '#')
-			$link.attr('data-action', actionName2)
+			$link.attr("data-action","#"+actionName2)
 			actionSet[actionName2] = function () {
 				testKey2 = randomKey2
 			}
@@ -293,8 +287,6 @@ void function () {
 				expect(testKey2).to.equal(randomKey2)
 				done()
 			}, 50)
-
-			$wrapper.remove()
 		})
 	})
 }()
