@@ -202,7 +202,7 @@ void function () {
 			setTimeout(function () {
 				expect(testKey).to.equal('test-foo')
 				done()
-			}, 50)
+			}, 0)
 		})
 		it('gets action name from `href` - context points to the link', function (done) {
 			$link = buildActionElem('', '#foo')
@@ -213,7 +213,7 @@ void function () {
 			setTimeout(function () {
 				expect(context).to.equal($link[0])
 				done()
-			}, 50)
+			}, 0)
 		})
 		it('gets action name from `data-action`', function (done) {
 			$link = buildActionElem('bar')
@@ -224,7 +224,7 @@ void function () {
 			setTimeout(function () {
 				expect(testKey).to.equal('test-bar')
 				done()
-			}, 50)
+			}, 0)
 		})
 		it('gets action name from `data-action` - context points to the link', function (done) {
 			$link = buildActionElem('bar')
@@ -235,7 +235,7 @@ void function () {
 			setTimeout(function () {
 				expect(context).to.equal($link[0])
 				done()
-			}, 50)
+			}, 0)
 		})
 		it('accepts `data-action` value as a hash', function (done) {
 			$link = buildActionElem('#bar')
@@ -246,7 +246,7 @@ void function () {
 			setTimeout(function () {
 				expect(testKey).to.equal('test-bar')
 				done()
-			}, 50)
+			}, 0)
 		})
 
 		it('triggers new action if action name modified', function (done) {
@@ -267,9 +267,9 @@ void function () {
 				setTimeout(function () {
 					expect(testKey).to.equal('test-bar')
 					done()
-				}, 50)
+				}, 0)
 
-			}, 50)
+			}, 0)
 
 		})
 	})
