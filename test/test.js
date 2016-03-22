@@ -4,9 +4,6 @@ void function () {
 	var _formatActionName = action.__formatActionName
 
 	var testKey = ''
-	var actionSet = {}
-	var fnFoo = function () {}
-	var fnBar = function () {}
 
 	function buildActionElem(action, href) {
 		var html = [
@@ -110,6 +107,10 @@ void function () {
 	})
 
 	describe('APIs', function () {
+		var actionSet = {}
+		var fnFoo = function () {}
+		var fnBar = function () {}
+
 		describe('action.add()', function () {
 			it('does basic functionality', function () {
 				expect(_actionList).to.deep.equal({})
