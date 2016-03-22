@@ -189,7 +189,7 @@ void function () {
 
 	describe('DOM binding', function () {
 		var $link, context
-		after(function () {
+		afterEach(function () {
 			$link.remove()
 		})
 		it('gets action name from `href`', function (done) {
@@ -248,45 +248,28 @@ void function () {
 			}, 50)
 		})
 
-		it('works even if action name modified',function(done){
-			if (!Date.now) {
-			  Date.now = function now() {
-			    return new Date().getTime()
-			  }
+		it('triggers new action if action name modified', function (done) {
+			$link = buildActionElem('foo')
+			_actionList.foo = function () {
+				testKey = 'test-foo'
 			}
-			
-			var $link
-			var actionName1, randomKey1, testKey1
-			var actionName2, randomKey2, testKey2
-
-			//first add action and trigger click
-			actionName1 = Date.now().toString(36)
-			randomKey1 = Math.random().toString(36)
-
-			$link = buildActionElem('', '#' + actionName1)
-			actionSet[actionName1] = function () {
-				testKey1 = randomKey1
-			}
-			action.add(actionSet)
 			$link.click()
 			setTimeout(function () {
-				expect(testKey1).to.equal(randomKey1)
+				expect(testKey).to.equal('test-foo')
+
+				// modify action name and test again
+				$link.attr('data-action', 'bar')
+				_actionList.bar = function () {
+					testKey = 'test-bar'
+				}
+				$link.click()
+				setTimeout(function () {
+					expect(testKey).to.equal('test-bar')
+					done()
+				}, 50)
+
 			}, 50)
 
-			//add action and trigger click again
-			actionName2 = Date.now().toString(36)
-			randomKey2 = Math.random().toString(36)
-
-			$link.attr("data-action","#"+actionName2)
-			actionSet[actionName2] = function () {
-				testKey2 = randomKey2
-			}
-			action.add(actionSet)
-			$link.click()
-			setTimeout(function () {
-				expect(testKey2).to.equal(randomKey2)
-				done()
-			}, 50)
 		})
 	})
 }()
