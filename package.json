@@ -1,0 +1,23 @@
+{
+  "name": "action",
+  "version": "0.1.0",
+  "homepage": "https://github.com/cssmagic/action",
+  "author": "cssmagic <cssmagic.cn@gmail.com>",
+  "description": "Easy and lazy solution for click-event-binding.",
+  "license": "MIT",
+  "keywords": [
+    "click",
+    "event"
+  ],
+  "main": "./src/action.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "jquery": "*"
+  },
+  "devDependencies": {
+    "del": "1.*",
+    "gulp": "3.*"
+  }
+}
