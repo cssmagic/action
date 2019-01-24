@@ -61,7 +61,7 @@ var action = (function () {
 	}
 
 	// API
-	function add(actionSet) {
+	function define(actionSet) {
 		if (!$.isPlainObject(actionSet)) {
 			/** DEBUG_INFO_START **/
 			console.error('[Action] Param must be a plain object.')
@@ -113,9 +113,12 @@ var action = (function () {
 	action.__formatActionName = _formatActionName
 	/** DEBUG_INFO_END **/
 
-	// exports
-	action.add = add
+	// api
+	action.define = define
 	action.trigger = trigger
+
+	// alias
+	action.add = define
 	return action
 
 }())

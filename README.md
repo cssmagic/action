@@ -11,11 +11,11 @@
 先定义一些动作：
 
 ```js
-action.add({
+action.define({
     'my-action': function () {
         //do something...
     },
-    ...
+    /* ... */
 })
 ```
 

@@ -111,14 +111,14 @@ void function () {
 		var fnFoo = function () {}
 		var fnBar = function () {}
 
-		describe('action.add()', function () {
+		describe('action.define()', function () {
 			it('does basic functionality', function () {
 				expect(_actionList).to.deep.equal({})
 				actionSet = {
 					foo: fnFoo,
 					bar: fnBar
 				}
-				action.add(actionSet)
+				action.define(actionSet)
 				expect(_actionList).to.deep.equal(actionSet)
 			})
 			it('formats keys of the input object', function () {
@@ -127,16 +127,16 @@ void function () {
 					foo: fnFoo,
 					bar: fnBar
 				}
-				action.add(actionSet)
+				action.define(actionSet)
 				expect(_actionList).to.deep.equal(actionSet)
 			})
 			it('does nothing if param is not a plain object', function () {
 				expect(_actionList).to.deep.equal({})
-				action.add('foo')
+				action.define('foo')
 				expect(_actionList).to.deep.equal({})
-				action.add(1)
+				action.define(1)
 				expect(_actionList).to.deep.equal({})
-				action.add(new Date())
+				action.define(new Date())
 				expect(_actionList).to.deep.equal({})
 			})
 		})
@@ -151,7 +151,7 @@ void function () {
 						testKey = 'test-bar'
 					}
 				}
-				action.add(actionSet)
+				action.define(actionSet)
 				action.trigger('foo')
 				expect(testKey).to.equal('test-foo')
 				action.trigger('bar')
@@ -167,7 +167,7 @@ void function () {
 						expect(this).to.equal(mocha)
 					}
 				}
-				action.add(actionSet)
+				action.define(actionSet)
 				action.trigger('foo', context)
 				action.trigger('bar', mocha)
 			})
@@ -181,7 +181,7 @@ void function () {
 						return mocha
 					}
 				}
-				action.add(actionSet)
+				action.define(actionSet)
 				expect(action.trigger('foo')).to.equal(testKey)
 				expect(action.trigger('bar')).to.equal(mocha)
 			})

@@ -7,11 +7,11 @@
 Define some actions:
 
 ```js
-action.add({
+action.define({
     'my-action': function () {
         //do something...
     },
-    ...
+    /* ... */
 })
 ```
 

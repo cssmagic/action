@@ -35,7 +35,7 @@
 
 ## JavaScript 接口<a name="js-api"></a>
 
-### `action.add(actions)`<a name="js-api-add"></a>
+### `action.define(actions)`<a name="js-api-define"></a>
 
 定义一个或多个动作。
 
@@ -52,7 +52,7 @@
 以下代码将定义两个名为 `foo` 和 `bar` 的动作。
 
 ```js
-action.add({
+action.define({
     'foo': function () {
         alert('You triggered action `foo`!')
     },
@@ -67,7 +67,15 @@ action.add({
 
 * 在定义动作时，动作名的开头所有 `#`、`!` 和空白符都将被忽略，结尾的空白符也将被忽略。
 * 无法定义一个动作名为空字符串的动作。
-* 如果在定义动作时使用了已经存在的动作名，则相当于用新的动作函数替换原有的动作函数。原因在于 `action.add()` 方法添加的是动作，不是事件监听器；而每个动作名只能对应一个动作函数。如果你觉得 `.add()` 这个接口名容易误解，可以自行创建并使用 `.define()` 或 `.register()` 这样的别名。
+* 如果在定义动作时使用了已经存在的动作名，则相当于用新的动作函数替换原有的动作函数。原因在于每个动作名只能对应一个动作函数。
+
+***
+
+### `action.add(actions)` <sup>⚠️</sup> <a name="js-api-add"></a>
+
+此方法系 `action.define()` 的别名。
+
+> ⚠️ 注意：从 v0.4 起不建议使用 `.add()`，请使用 `.define()` 代替。
 
 ***
 
