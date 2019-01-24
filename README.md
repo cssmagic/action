@@ -57,17 +57,17 @@ action.add({
 
 ## 安装
 
-0. 通过 Bower 安装：
+0. 通过 npm 3+ 安装：
 
 	```sh
-	$ bower install action
+	$ npm install cmui-action
 	```
 
 0. 在页面中加载 Action 的脚本文件及必要的依赖：
 
 	```html
-	<script src="bower_components/jquery/dist/jquery.js"></script>
-	<script src="bower_components/action/src/action.js"></script>
+	<script src="./node_modules/jquery/dist/jquery.js"></script>
+	<script src="./node_modules/cmui-action/src/action.js"></script>
 	```
 
 ## API 文档
@@ -78,7 +78,7 @@ action.add({
 ## 单元测试
 
 0. 把本项目的代码 fork 并 clone 到本地。
-0. 在本项目的根目录运行 `bower install`，安装必要的依赖。
+0. 在本项目的根目录运行 `npm install`，安装必要的依赖。
 0. 在浏览器中打开 `test/test.html` 即可运行单元测试。
 
 ## 谁在用？

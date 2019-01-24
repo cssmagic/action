@@ -11,13 +11,15 @@
   ],
   "main": "./src/action.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"See README.md to run tests in browsers.\" && exit 1"
   },
   "dependencies": {
     "jquery": "*"
   },
   "devDependencies": {
-    "del": "1.*",
-    "gulp": "3.*"
+    "zepto.js": "^1.1.6",
+    "mocha.css": "^0.1.1",
+    "mocha": "5.*",
+    "chai": "4.*"
   }
 }
