@@ -1,6 +1,6 @@
 {
   "name": "cmui-action",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "homepage": "https://github.com/cssmagic/action",
   "author": "cssmagic <cssmagic.cn@gmail.com>",
   "description": "Easy and lazy solution for click-event-binding.",
