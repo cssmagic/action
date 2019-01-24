@@ -71,7 +71,7 @@ action.define({
 
 ***
 
-### `action.add(actions)` <sup>⚠️</sup> <a name="js-api-add"></a>
+### `action.add()` <sup>⚠️</sup> <a name="js-api-add"></a>
 
 此方法系 `action.define()` 的别名。
 
